@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/Aglasener/Developer-Profile-Generator#readme",
   "dependencies": {
-    "electron": "^7.1.9"
+    "axios": "^0.19.1",
+    "electron": "^7.1.9",
+    "inquirer": "^7.0.3"
   }
 }
