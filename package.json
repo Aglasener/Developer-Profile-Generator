@@ -1,0 +1,22 @@
+{
+  "name": "developer-profile-generator",
+  "version": "1.0.0",
+  "description": "A developer profile generator that can quickly prepare reports for stakeholders",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Aglasener/Developer-Profile-Generator.git"
+  },
+  "author": "Andres Glasener",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Aglasener/Developer-Profile-Generator/issues"
+  },
+  "homepage": "https://github.com/Aglasener/Developer-Profile-Generator#readme",
+  "dependencies": {
+    "electron": "^7.1.9"
+  }
+}
