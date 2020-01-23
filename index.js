@@ -2,6 +2,9 @@ const fs = require("fs");
 const inquirer = require("inquirer");
 const util = require("util");
 const axios = require("axios");
+const convertFactory = require('electron-html-to');
+
+
 
 const writeFileAsync = util.promisify(fs.writeFile);
 
@@ -28,6 +31,28 @@ function accessGithub (answers) {
             `https://api.github.com/users/${answers.username}`
         );
 
+}
+
+function generatePDF (response) {
+
+  
+  var conversion = convertFactory({
+    converterPath: convertFactory.converters.PDF
+  });
+
+
+   
+  conversion({ html: response}, function(err, result) {
+    if (err) {
+      return console.error(err);
+    }
+   
+    console.log(result.numberOfPages);
+    console.log(result.logs);
+    result.stream.pipe(fs.createWriteStream('./resume.pdf'));
+    conversion.kill();
+});
+  
 }
 
 function generateHTML(info, colorChoice) {
@@ -82,8 +107,10 @@ async function init() {
         const response = await accessGithub(answers);
         console.log(response.data);
         const html = await generateHTML(response.data,answers.color);
-        await writeFileAsync("index.html", html);
+        // await writeFileAsync("index.html", html);
         console.log("successfully wrote to index.html");
+        await generatePDF(html);
+        console.log("successfully converted to pdf");
     } catch(err) {
         console.log(err);
     }
